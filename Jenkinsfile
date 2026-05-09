@@ -3,7 +3,7 @@ pipeline {
 
 
     environment {
-        APP_NAME = 'your-app-name'
+        APP_NAME = 'sample_repo'
         BUILD_DIR = 'target'   // or 'build', 'dist' for your project
     }
 
