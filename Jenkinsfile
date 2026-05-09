@@ -1,10 +1,12 @@
 pipeline {
     agent any
 
+
     environment {
-        APP_NAME = 'my-app'
-        BUILD_DIR = 'target'
+        APP_NAME = 'your-app-name'
+        BUILD_DIR = 'target'   // or 'build', 'dist' for your project
     }
+
 
     stages {
         stage('Checkout') {
@@ -14,17 +16,24 @@ pipeline {
             }
         }
 
+
         stage('Build') {
             steps {
                 echo 'Building the project...'
-                bat 'mvn clean package -DskipTests'
+                // Maven:  sh 'mvn clean package -DskipTests'
+                // Gradle: sh './gradlew build'
+                // npm:    sh 'npm install && npm run build'
+                sh 'echo Build step — replace with your command'
             }
         }
+
 
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                bat 'mvn test'
+                // Maven:  sh 'mvn test'
+                // npm:    sh 'npm test'
+                sh 'echo Test step — replace with your command'
             }
             post {
                 always {
@@ -33,6 +42,7 @@ pipeline {
             }
         }
 
+
         stage('Archive') {
             steps {
                 echo 'Archiving build artifacts...'
@@ -40,6 +50,7 @@ pipeline {
             }
         }
     }
+
 
     post {
         success {
